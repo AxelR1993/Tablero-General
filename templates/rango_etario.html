@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <title>Tablero General</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-image: url("/static/fondo.png");
+
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {
+      height: 450px
+    }
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+      background-image: url("/static/fondo.png");
+    }
+
+
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+
+      .row.content {
+        height: auto;
+      }
+    }
+
+    #niño {
+      border: 5px solid white;
+    }
+
+    #niño:hover {
+      width: 13%;
+    }
+
+    #Adolescentes {
+      border: 5px solid white;
+    }
+
+    #Adolescentes:hover {
+      width: 13%;
+    }
+
+    #adultojoven {
+      border: 5px solid white;
+    }
+
+    #adultojoven:hover {
+      width: 12%;
+    }
+
+    #adulto25 {
+      border: 5px solid white;
+    }
+
+    #adulto25:hover {
+      width: 14%;
+    }
+
+    #adulto45 {
+      border: 5px solid white;
+    }
+
+    #adulto45:hover {
+      width: 12%;
+    }
+
+    #adulto60 {
+      border: 5px solid white;
+    }
+
+    #adulto60:hover {
+      width: 15%;
+    }
+
+   
+
+  </style>
+</head>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <img src="static/mimuni.png" alt="mimuni" width="25%" class="img-responsive center-block">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+    </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <h3><a href="#">Accion</a></p>
+          <br>
+          <p><a href="rango_etario.html">Rango Etario</a></p>
+          <br>
+          <p><a href="#">Fecha</a></p>
+          <br>
+          <p><a href="#">Localidad</a></p>
+          <br>
+          <p><a href="#">Nacionalidad</a></p>
+          <br>
+          <p><a href="#">Origen</a></p>
+      </div>
+      <div class="col-sm-8 text-center">
+        <br>
+        <h1>Rango Etario</h1>
+        <br>
+        <div class="personas">
+          <img src="static/niño.png" id="niño" alt="niño" onclick="agregarRangoEtario('niño')" width="12%" style="margin-right: 3%;">
+          <img src="static/adolescente.png" id="Adolescentes" alt="Adolescentes" onclick="agregarRangoEtario('Adolescentes')" width="12%" style="margin-right: 3%;">
+          <img src="static/adultojoven.png" id="adultojoven" alt="adultojoven" onclick="agregarRangoEtario('adultojoven')" width="11%" style="margin-right: 3%;">
+          <img src="static/adulto25.png" id="adulto25" alt="adulto25" onclick="agregarRangoEtario('adulto25')" width="13%" style="margin-right: 3%;">
+          <img src="static/adulto45.png" id="adulto45" alt="adulto45" onclick="agregarRangoEtario('adulto45')" width="11%" style="margin-right: 3%;">
+          <img src="static/adultomayor.png" id="adulto60" alt="adultomayor" onclick="agregarRangoEtario('adulto60')" width="14%" style="margin-right: 3%;">
+        </div>
+
+
+      </div>
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <a href="#">
+            <button type="button" class="btn btn-primary btn-lg">Siguiente</button>
+          </a></button>
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <div class="well">
+          <button class="btn btn-success btn-lg" id="boton_generar_excel"> <a href="/generarExcel/">Generar Excel</a></button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid text-center">
+      <img src="static/escudo.png" alt="escudo" width="8%">
+      <img src="static/futuro.png" alt="futuro" width="12%" style="margin-left: 25%;">
+
+    </footer>
+
+  </body>
+
+<script>
+
+  const rangoEtario = []
+
+  function agregarRangoEtario(edad){   
+    let indice = rangoEtario.indexOf(edad)
+    if(indice > -1){
+      rangoEtario.splice(indice,1)
+      document.getElementById(edad).style.borderColor = 'white'
+    }
+    else {
+      rangoEtario.push(edad)
+      document.getElementById(edad).style.borderColor = 'red'
+    }
+    console.log(rangoEtario)
+  
+
+    const valores = {rangoEtario} //Pass the javascript variables to a dictionary.
+        const s = JSON.stringify(valores); // Stringify converts a JavaScript object or value to a JSON string
+        console.log(s); // Prints the variables to console window, which are in the JSON format
+      //  window.alert(s)
+        $.ajax({
+            url:"/test",
+            type:"POST",
+            contentType: "application/json",
+            data: JSON.stringify(s)});
+
+}
+
+    
+
+  
+  
+  </script>
+</html>
