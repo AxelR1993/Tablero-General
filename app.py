@@ -18,7 +18,7 @@ def rango_etario():
 def generar_excel():
 
     rango_etario = result
-    sql = "SELECT * FROM personas WHERE rango_etario IN {rango_etario}";
+    sql = f"SELECT * FROM personas WHERE rango_etario IN {rango_etario}";
 
     db = connection.connect(host='172.23.1.56',
             database='personasjb',
@@ -44,6 +44,7 @@ def test():
     print(type(output))
     global result
     result = json.loads(output) #this converts the json output to a python dictionary
+    result = tuple([tuple(e) for e in result])
     print(result) # Printing the new dictionary
     print(type(result))#this shows the json converted as a python dictionary
     return result
